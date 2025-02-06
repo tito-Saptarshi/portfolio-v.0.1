@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button"
 import "@/app/globals.css"
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/Navbar"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({
       <div className={`min-h-screen bg-[#1a1a1a] text-gray-200`}>
         <div className="mx-auto max-w-7xl lg:flex">
           {/* Sidebar / Profile Section */}
+          
           <aside className="lg:w-[300px] p-8 lg:fixed lg:h-screen">
             <div className="flex flex-col items-center text-center">
               <div className="relative w-32 h-32 mb-4">

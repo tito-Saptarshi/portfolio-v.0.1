@@ -1,34 +1,29 @@
-"use client"
+import Image from "next/image";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { projects, categories } from "@/lib/data"
+import { projects } from "@/lib/data";
+import SearchForm from "@/components/SearchForm";
+import Link from "next/link";
 
-export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [searchQuery, setSearchQuery] = useState("")
-
-  const filteredProjects = projects.filter(
-    (project) =>
-      (selectedCategory === "All" || project.category === selectedCategory) &&
-      project.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
-
+export default async function PortfolioPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
+  const query = (await searchParams).query;
   return (
     <section className="mb-12">
       <h2 className="text-3xl font-bold mb-6">My Portfolio</h2>
 
       <div className="flex flex-col mb-6 gap-4">
-        <Input
+        {/* <Input
           type="text"
           placeholder="Search projects..."
           className="max-w-md"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <div className="flex flex-wrap gap-2">
+        /> */}
+        <SearchForm query={query} />
+        {/* <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <Button
               key={category}
@@ -38,12 +33,17 @@ export default function PortfolioPage() {
               {category}
             </Button>
           ))}
-        </div>
+        </div> */}
       </div>
-
+      <h1 className="text-xl pb-6">
+        {query ? `Search results for "${query}"` : "All Projects"}
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <div key={project.id} className="bg-[#2a2a2a] rounded-lg overflow-hidden">
+        {projects.map((project) => (
+          <Link href={'/fggf'}
+            key={project.id}
+            className="bg-[#2a2a2a] rounded-lg overflow-hidden"
+          >
             <div className="relative h-48 overflow-hidden">
               <Image
                 src={project.image || "/placeholder.svg"}
@@ -57,10 +57,9 @@ export default function PortfolioPage() {
               <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
               <p className="text-gray-400">{project.description}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
-  )
+  );
 }
-
