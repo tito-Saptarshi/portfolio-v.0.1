@@ -6,6 +6,7 @@ import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
+import { Project } from "@/sanity/types";
 export default async function PortfolioPage({
   searchParams,
 }: {
@@ -47,15 +48,15 @@ console.log(posts);
         {query ? `Search results for "${query}"` : "All Projects"}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((project) => (
+        {posts.map((project : Project) => (
           <Link href={'/fggf'}
-            key={project.slug}
+            key={project._id}
             className="bg-[#2a2a2a] rounded-lg overflow-hidden"
           >
             <div className="relative h-48 overflow-hidden">
               <Image
                 src={project.image || "/placeholder.svg"}
-                alt={project.slug}
+                alt={project._id}
                 layout="fill"
                 objectFit="cover"
                 className="transition-transform duration-300 ease-in-out transform hover:scale-110"
