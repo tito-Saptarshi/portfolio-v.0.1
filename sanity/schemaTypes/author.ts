@@ -31,6 +31,10 @@ export const author = defineType({
       name: "bio",
       type: "text",
     }),
+    defineField({
+      name: "admin",
+      type: "boolean",
+    }),
   ],
   preview: {
     select: {

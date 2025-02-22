@@ -7,7 +7,7 @@ export default function AboutPage() {
       <div className="space-y-4">
         <p className="text-gray-400">
           I&lsquo;m a Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media.
-          I enjoy turning complex problems into simple, beautiful and intuitive designs.
+          I enjoy turning complex problems into simple, beautiful and intuit ve designs.
         </p>
         <p className="text-gray-400">
           My job is to build your website so that it is functional and user-friendly but at the same time attractive.
