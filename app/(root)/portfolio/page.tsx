@@ -4,7 +4,6 @@ import SearchForm from "@/components/SearchForm";
 import Link from "next/link";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
-import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
 import { Project } from "@/sanity/types";
 export default async function PortfolioPage({
@@ -13,12 +12,14 @@ export default async function PortfolioPage({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-const data = await client.fetch(STARTUPS_QUERY);
-const params = { search: query || null }; 
+  // const data = await client.fetch(STARTUPS_QUERY);
+  const params = { search: query || null };
 
-const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
-console.log(posts);
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
+
+  console.log(posts);
   console.log(JSON.stringify(posts, null, 2));
+
   return (
     <section className="mb-12">
       <h2 className="text-3xl font-bold mb-6">My Portfolio</h2>
@@ -48,8 +49,9 @@ console.log(posts);
         {query ? `Search results for "${query}"` : "All Projects"}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((project : Project) => (
-          <Link href={'/fggf'}
+        {posts.map((project: Project) => (
+          <Link
+            href={"/fggf"}
             key={project._id}
             className="bg-[#2a2a2a] rounded-lg overflow-hidden"
           >
